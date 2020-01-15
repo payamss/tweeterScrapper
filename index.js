@@ -3,7 +3,8 @@ const fs =require('fs-extra');
 console.clear();
 (async function main() {
     try {
-        const browser = await puppeteer.launch({headless:false});
+        const browser = await puppeteer.launch(    
+            {args: ['--start-maximized','--proxy-server=socks5://localhost:3128'],headless:false});
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.0 Safari/537.36');
         await page.goto('https://twitter.com/payamss')

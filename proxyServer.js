@@ -6,8 +6,9 @@ const puppeteer = require('puppeteer');
   const password = '';
 
   const browser = await puppeteer.launch({
-    args: [
-        
+    
+      args: ['--start-maximized',
+      '--proxy-server=socks5://localhost:3128'
       
     ],headless:false
   });
@@ -19,7 +20,7 @@ const puppeteer = require('puppeteer');
     password,
   });
 
-  await page.goto('https://www.google.com/');
+  await page.goto('http://www.ip2nation.com/');
 
   await browser.close();
 })();
