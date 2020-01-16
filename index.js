@@ -1,13 +1,22 @@
 const puppeteer = require('puppeteer');
 const fs =require('fs-extra');
 console.clear();
+var proxyEnable=false;
+var headlessVal=true;
 (async function main() {
     try {
-        const browser = await puppeteer.launch(    
-            {args: ['--start-maximized','--proxy-server=socks5://localhost:3128'],headless:false});
+        let browser;
+        if (proxyEnable) {
+             browser = await puppeteer.launch(    
+                {args: ['--start-maximized','--proxy-server=socks5://localhost:3128'],headless:headlessVal});
+        } else {
+             browser = await puppeteer.launch({headless:headlessVal});
+        }
+        
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.0 Safari/537.36');
         await page.goto('https://twitter.com/payamss')
+        //await page.goto('https://twitter.com/explore')
         await page.waitForSelector('p.TweetTextSize');
         console.log("showing");
         await fs.writeFile('Out.csv','TCount,AllTweets\n');
