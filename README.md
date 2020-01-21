@@ -10,5 +10,5 @@ The application is also working on Windows, instructions left to the reader to a
     $ npm i
     $ node index.js
     
-Now visit  ````http://localhost:3700' on your web browser
+Now visit  ````http://localhost:3000' on your web browser
 
